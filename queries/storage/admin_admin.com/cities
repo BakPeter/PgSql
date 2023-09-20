@@ -1,0 +1,77 @@
+create table cities (
+	name varchar(50),
+	country varchar(50),
+	population integer,
+	area integer
+);
+
+drop table cities
+
+SELECT 
+	"name",
+	population as peaple_copunt,
+	area,
+	population / area as density,
+	(population / area) * area as special_density
+FROM cities
+
+select name || ', ' || country as location from cities
+select concat(name, ', ', country) as concatanated_location from cities
+SELECT "name", cities."name", cities."name" FROM cities
+select 
+	CONCAT(UPPER(name), ', ', LOWER(country)) as concatanated_location, 
+ 	LENGTH(CONCAT(UPPER(name), ', ', LOWER(country))) AS length
+from cities
+
+select 
+	name,
+	country
+from cities 
+where area < 1500
+
+select 
+	name,
+	area
+from cities
+where area <> 232
+
+select 
+	name,
+	area
+from cities
+where area between 1000 and 3000
+select * from cities
+select
+	"name",
+	area
+from cities
+where
+	area in (2343, 232) 
+	or name = 'Delhi'
+	or name <> 'Sao Paulo'
+
+
+INSERT INTO cities("name", country, population, area)
+VALUES ('Soa Paulo', 'Brazil', 566231, 121)
+
+INSERT INTO cities (name, country, population, area)
+VALUES 
+	('Delhi', 'India', 28125000, 232),
+  ('Shanghai', 'Chaina', 3213232, 1212)
+  
+select * from cities
+
+update cities
+set name = 'New Sao Paulo'
+where area = 2343;
+
+select * from cities;
+
+update cities
+set country = 'Israel'
+where name = 'Tel aViv'
+
+delete from cities
+where name = 'New Sao Paulo'
+
+

@@ -1,0 +1,57 @@
+CREATE table users (
+	id serial PRIMARY key,
+	username VARCHAR(50)
+);
+
+INSERT INTO users(username)
+VALUES 
+	('Peter'),
+	('Eli'),
+	('Jhony');
+
+INSERT INTO users(username)
+VALUES 
+	('Bibi');
+
+DELETE from users
+where id=3;
+
+select * from users;
+select * from photos;
+
+create table photos(
+	id serial primary key,
+	url varchar(200),
+-- 	user_id integer references users(id) on delete cascade
+	user_id integer references users(id) on delete set null
+);
+insert into photos(url, user_id)
+values
+	('http://two.jpg', 3),
+	('http://25.jpg', 3),
+	('http://36.jpg', 3),
+	('http://5454.jpg', 3),
+	('http://654.jpg', 3),
+	('http://787.jpg', 4),
+	('http://1000.jpg', 6),
+	('http://787.jpg', null),
+	('http://1000.jpg', NULL);
+
+select * from photos;
+
+drop table photos;
+
+select * from photos
+where user_id=4;
+
+select * from photos
+join users on users.id = photos.user_id;
+
+select 	url, username from photos
+join users on users.id = photos.user_id;
+
+select 
+	url as pic_url,
+	username as user_pic_owner
+from photos
+join users on users.id = photos.user_id;
