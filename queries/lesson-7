@@ -1,0 +1,3 @@
+select * from ls7.users;	
+select * from ls7.products;
+select * from ls7.orders;

@@ -1,0 +1,25 @@
+select * from ls6.users;	
+select * from ls6.products;
+select * from ls6.orders;
+
+select paid, count(*), avg(id) as avg_id, sum(product_id) as sum_product_id
+from ls6.orders
+group by paid;
+
+select id, count(*), avg(id)
+from ls6.orders
+group by id;
+
+select paid, count(*) as c
+from ls6.orders
+group by paid
+having count(*) > 0;
+
+select * from ls6.users;	
+select * from ls6.products;
+select * from ls6.orders;
+
+select first_name, last_name, paid
+from ls6.users as u
+join ls6.orders as o on o.user_id = u.id;
+
