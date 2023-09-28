@@ -873,8 +873,8 @@ CREATE TABLE ls7.products (
 
 CREATE TABLE ls7.orders (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES ls6.users(id),
-  product_id INTEGER REFERENCES ls6.products(id),
+  user_id INTEGER REFERENCES ls7.users(id),
+  product_id INTEGER REFERENCES ls7.products(id),
   paid BOOLEAN
 );
 
