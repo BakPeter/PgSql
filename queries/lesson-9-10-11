@@ -1,0 +1,79 @@
+select * from ls9.users;
+select * from ls9.products;
+select * from ls9.orders;
+
+select max(price)
+from ls9.products
+where products.department = 'Toys';
+
+select name, price
+from ls9.products
+where price > 947
+
+select name, price
+from ls9.products
+where price > (
+	select max(price)
+	from ls9.products
+	where products.department = 'Toys'
+);
+
+select Max(price) from ls9.products
+select name, price, ( select Max(price) from ls9.products ) from ls9.products
+
+select Max(price) from ls9.products
+
+select name, price, ( select price from ls9.products where products.id = '3' ) as id_3_price
+from ls9.products;
+
+select name, price, (select Max(price) from ls9.products)
+from ls9.products
+where price > 876;
+
+select name, price/weight as price_weigth_ratio 
+from ls9.products;
+
+select name, price_weigth_ratio
+from ( select name, price, price/weight as price_weigth_ratio from ls9.products) as p
+where  price_weigth_ratio > 5;
+
+select avg(p.order_count)
+from (
+	select user_id, count(*) as order_count
+	from ls9.orders
+	group by user_id
+) as p;
+
+select first_name
+from ls9.users as u
+join (
+	select user_id
+	from ls9.orders
+	where product_id = 3
+) as o
+on o.user_id = u.id;
+
+
+select id
+from ls9.orders
+where product_id in ( 
+	select id
+	from ls9.products
+	where price / weight > 50
+);
+
+select name
+from ls9.products
+where price > (
+	select avg(price)
+	from ls9.products
+);
+
+select name, department, price, ( select max(price) from ls9.products) as max_price 
+from ls9.products
+where price > all (
+	select price
+	from ls9.products
+	where department  = 'Industrial'
+);
+
